@@ -1,0 +1,92 @@
+﻿@model internUPR.Models.Internship
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles | Internado</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+       
+        <dt>
+            Nombre:
+            @*@Html.DisplayNameFor(model => model.name)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            Departamento: 
+            @*@Html.DisplayNameFor(model => model.departmentID)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.departmentID)
+        </dd>
+
+        <dt>
+            Posición:
+            @*@Html.DisplayNameFor(model => model.position)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.position)
+        </dd>
+
+        <dt>
+            Descripción: 
+          @*  @Html.DisplayNameFor(model => model.description)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.description)
+        </dd>
+
+        <dt>
+            Requisitos: 
+            @*@Html.DisplayNameFor(model => model.requirement)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.requirement)
+        </dd>
+
+        <dt>
+            Compañía:
+           @* @Html.DisplayNameFor(model => model.company)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.company)
+        </dd>
+
+        <dt>
+            Persona Contacto:
+           @* @Html.DisplayNameFor(model => model.contactName)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contactName)
+        </dd>
+
+        <dt>
+            Correo Electrónico:
+           @* @Html.DisplayNameFor(model => model.coemail)*@
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.coemail)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { model = Model }, FormMethod.Post)) |
+    <input type="button" title="Details" value="Volver" onclick="location.href='@Url.Action("Details", "Internship", new { internshipId = item.internID })'" class=" btn btn-primary" role="button" />*@
+    @Html.ActionLink("Volver", "Index")
+</p>

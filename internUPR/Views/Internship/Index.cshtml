@@ -1,0 +1,37 @@
+﻿@model internUPR.ViewModels.InternshipListViewModel
+@{
+    ViewBag.Title = "Internados";
+}
+<h3>Internados</h3>
+
+@foreach (var item in Model.Internships)
+{
+    <div>
+        <div class="col-sm-4 col-sm-4 col-sm-4">
+            <div class="thumbnail">
+                <img src="~/Content/Images/thumbnail_iU.png" alt="thumbnail">
+            </div>
+
+            <div class="caption">
+                <h3>@Html.DisplayFor(modelItem => item.name)</h3>
+                <p>@Html.DisplayFor(modelItem => item.position)
+                @Html.DisplayFor(modelItem => item.company)</p>
+               
+               <br />
+                   @* @Html.ActionLink("Editar ", "Edit", "Internship", new { internshipId = item.internID }, null)*@
+                  @*  @Html.ActionLink("Remover ", "Delete", "Internship", new { internshipId = item.internID }, null)*@
+                   @* @Html.ActionLink(" Detalles", "Details", "Internship", new { internshipId = item.internID }, null)*@
+                @*nombre, metodo (controller), clase*(view)*@
+                <p>
+                    <input type="button" title="Details" value="Detalles" onclick="location.href='@Url.Action("Details", "Internship", new { internshipId = item.internID })'" class=" btn btn-sm" role="button" />
+                    <input type="button" title="Edit" value="Editar" onclick="location.href='@Url.Action("Edit", "Internship", new { internshipId = item.internID })'" class=" btn btn-sm" role="button" />
+                  @*  <input type="button" title="Delete" value="Remover" onclick="location.href='@Url.Action("Delete", "Internship", new { internshipId = item.internID })'" class=" btn btn-sm" role="button" />*@
+
+                </p>
+
+            </div>
+        </div>
+    </div>
+}
+
+

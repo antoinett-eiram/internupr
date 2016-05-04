@@ -1,0 +1,112 @@
+﻿@model internUPR.Models.Internship 
+@*^esta recibiendo el modelo en el view*@
+<h2>Crear</h2>
+                        @*metodo, controller name*@
+@using (Html.BeginForm("Create", "Internship", new { elem = Model }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Internado</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.Label("Nombre", htmlAttributes: new { @class = "control-label col-md-2" })
+           @* @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })*@
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Departamento", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               @* @Html.EditorFor(model => model.departmentID, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownListFor(model => model.departmentID, new SelectList(
+                  new List<Object>{
+                       new { value = "Administración de Empresas" , text = "Administración de Empresas"  },
+                       new { value = "Biología" , text = "Biología" },
+                       new { value = "Ciencias de Computadoras" , text = "Ciencias de Computadoras"},
+                       new { value = 3 , text = "Ciencias Sociales" },
+                       new { value = 4 , text = "Educación Física Adaptada" },
+                       new { value = 5 , text = "Electrónica" },
+                       new { value = 6 , text = "Español" },
+                       new { value = 7 , text = "Física" },
+                       new { value = 8 , text = "Humanidades" },
+                       new { value = 9 , text = "Ingeniería y Tecnologías de Ingeniería" },
+                       new { value = 10 , text = "Inglés" },
+                       new { value = 11 , text = "Matemáticas" },
+                       new { value = 12 , text = "Pedagogía" },
+                       new { value = 13 , text = "Química" },
+                       new { value = 14 , text = "Sistemas de Oficina" },
+                       new { value = 15 , text = "Seleccione..."}
+
+                    },
+                  "value",
+                  "text",
+            15));
+                @Html.ValidationMessageFor(model => model.departmentID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Posición", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.position, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.position, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Descripción", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Requisitos", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.requirement, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.requirement, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Compañía", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.company, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.company, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Persona Contacto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.contactName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.contactName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Correo Electrónico", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.coemail, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.coemail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Crear" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+            }
+
+            <div>
+                @Html.ActionLink("Back to List", "ListManager", "Store")
+            </div>
+
