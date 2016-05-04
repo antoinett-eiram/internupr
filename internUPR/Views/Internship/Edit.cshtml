@@ -4,7 +4,7 @@
     ViewBag.Title = "Editar";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@{var dpto = Model.departmentID;}
 <h2>Editar</h2>
 
 
@@ -32,28 +32,32 @@
                @* @Html.EditorFor(model => model.departmentID, new { htmlAttributes = new { @class = "form-control" } })*@
                 @Html.DropDownListFor(model => model.departmentID, new SelectList(
                   new List<Object>{
+                        new { value = "0" , text = "Seleccione..."  },
                        new { value = "Administración de Empresas" , text = "Administración de Empresas"  },
                        new { value = "Biología" , text = "Biología" },
                        new { value = "Ciencias de Computadoras" , text = "Ciencias de Computadoras"},
-                       new { value = 3 , text = "Ciencias Sociales" },
-                       new { value = 4 , text = "Educación Física Adaptada" },
-                       new { value = 5 , text = "Electrónica" },
-                       new { value = 6 , text = "Español" },
-                       new { value = 7 , text = "Física" },
-                       new { value = 8 , text = "Humanidades" },
-                       new { value = 9 , text = "Ingeniería y Tecnologías de Ingeniería" },
-                       new { value = 10 , text = "Inglés" },
-                       new { value = 11 , text = "Matemáticas" },
-                       new { value = 12 , text = "Pedagogía" },
-                       new { value = 13 , text = "Química" },
-                       new { value = 14 , text = "Sistemas de Oficina" },
-                       new { value = 15 , text = "Seleccione..."}
+                       new { value = "Ciencias Sociales" , text = "Ciencias Sociales" },
+                       new { value = "Educación Física Adaptada" , text = "Educación Física Adaptada" },
+                       new { value = "Electrónica" , text = "Electrónica" },
+                       new { value = "Español" , text = "Español" },
+                       new { value = "Física" , text = "Física" },
+                       new { value = "Humanidades" , text = "Humanidades" },
+                       new { value = "Ingeniería y Tecnologías de Ingeniería" , text = "Ingeniería y Tecnologías de Ingeniería" },
+                       new { value = "Inglés" , text = "Inglés" },
+                       new { value = "Matemáticas" , text = "Matemáticas" },
+                       new { value = "Pedagogía" , text = "Pedagogía" },
+                       new { value = "Química" , text = "Química" },
+                       new { value = "Sistemas de Oficina" , text = "Sistemas de Oficina" },
 
                     },
                   "value",
                   "text",
             15));
                 @Html.ValidationMessageFor(model => model.departmentID, "", new { @class = "text-danger" })
+                @if(dpto == "0"){
+                    Output.WriteLine("<h5> Debe seleccionar un departamento.</h5");
+                }
+               
             </div>
         </div>
 

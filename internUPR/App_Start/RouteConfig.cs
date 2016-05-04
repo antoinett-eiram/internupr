@@ -12,6 +12,12 @@ namespace internUPR
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+            //added for testing delete action
+            routes.MapRoute(
+                name: "Internship",
+                url: "Internship/Delete/{id}",
+                defaults: new { controller = "InternshipController", action = "Delete" }
+                );
 
             routes.MapRoute(
                 name: "Default",

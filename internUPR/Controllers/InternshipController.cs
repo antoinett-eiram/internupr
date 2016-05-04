@@ -8,11 +8,20 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using internUPR.ViewModels;
+using System.Net;
+using System.Diagnostics;
 
 namespace internUPR.Controllers
 {
     public class InternshipController : DBController
-    {   //GET: Returns whatever information is identified by the request
+    {   
+        //Result is displayed on the window Output Visual Studio at runtime.
+        public InternshipController()
+        {
+            db.Database.Log = l => Debug.Write(l);
+        }
+        
+        //GET: Returns whatever information is identified by the request
         public ActionResult Create()
         {
             return View();
@@ -75,6 +84,32 @@ namespace internUPR.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            return View("Index");
+        }
+
+        //GET:Internship/Delete/5
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Internship internship = db.Internships.Find(id);
+            if (internship == null)
+            {
+                return HttpNotFound();
+            }
+            return View(internship);
+        }
+
+        //POST: Internship/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Internship internship = db.Internships.Find(id);
+            db.Internships.Remove(internship);
+            db.SaveChanges();
             return View("Index");
         }
 
@@ -155,20 +190,21 @@ namespace internUPR.Controllers
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //SEARCH ENGINE FOR INTERNSHIPS
-        //public ActionResult Index(string searchString)
+        //SEARCH FOR INTERNSHIPS
+        //public ActionResult Search(string id)
         //{
-        //    var internados = from x in db.Internships
-        //                     select x;
-        //    if(!String.IsNullOrEmpty(searchString))
+        //    string searchString = id;
+        //    var internship = from i in db.Internships
+        //                     select i;
+        //    if (!String.IsNullOrEmpty(searchString))
         //    {
-        //        internados = internados.Where(s => s.name.Contains(searchString));
+        //        internship = internship.Where(s => s.name.Contains(searchString));
         //    }
-        //    return View(internados);
+        //    return View(internship);
         //}
 
         //[HttpPost]
-        //public string Index(FormCollection fc, string searchString)
+        //public string Search(FormCollection fc, string searchString)
         //{
         //    return "<h3>From [HttpPost]Index" + searchString + "</h3>";
         //}

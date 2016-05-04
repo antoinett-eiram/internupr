@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -33,5 +34,10 @@ namespace internUPR.Controllers
             ViewBag.UserName = UserManager.FindById(userId).fullName;
             base.OnActionExecuting(filterContext);
         }
+        ////Uses the procedure
+        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        //{
+        //    modelBuilder.Entity<Internship>().MapToStoredProcedures();
+        //}
     }
 }

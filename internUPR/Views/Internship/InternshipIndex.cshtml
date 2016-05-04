@@ -1,82 +1,41 @@
-﻿@model IEnumerable<internUPR.Models.Internship>
+﻿@*@model IEnumerable<internUPR.Models.Internship>*@
+@model internUPR.ViewModels.InternshipListViewModel
 
 @{
     ViewBag.Title = "InternshipIndex";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<h2>Detalles | Internado</h2>
 <h2>InternshipIndex</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+   @* @Html.ActionLink("Create New", "Create")*@
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.user.fullName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.departmentID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.position)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.requirement)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.company)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contactName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.coemail)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.user.fullName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.departmentID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.position)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.requirement)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.company)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contactName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.coemail)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.internID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.internID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.internID })
-        </td>
-    </tr>
+@foreach (var item in Model.Internships)
+{
+    <div>
+        <div class="col-sm-4 col-sm-4 col-sm-4">
+            <div class="thumbnail">
+                <img src="~/Content/Images/thumbnail_iU.png" alt="thumbnail">
+            </div>
+
+            <div class="caption">
+                <h3>@Html.DisplayFor(modelItem => item.name)</h3>
+                <p>
+                    @Html.DisplayFor(modelItem => item.position)
+                @Html.DisplayFor(modelItem => item.company)
+            </p>
+
+            <br />
+            <p>
+                <input type="button" title="Details" value="Detalles" onclick="location.href='@Url.Action("Details", "Internship", new { internshipId = item.internID })'" class=" btn btn-sm" role="button" />
+
+            </p>
+
+        </div>
+    </div>
+</div>
 }
 
-</table>
